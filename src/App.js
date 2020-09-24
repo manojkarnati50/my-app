@@ -1,6 +1,7 @@
-import React, { Component, Fragment, useLayoutEffect } from "react";
+import React, { Component } from "react";
 import "./App.css";
 import sampleData from "./xmls/items_list.js";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -12,22 +13,25 @@ class App extends Component {
     const domParser = new DOMParser();
     const doc = domParser.parseFromString(sampleData, "application/xml");
     const telephonesList = doc.getElementsByTagName("TelephoneNumberId");
-    let tnUL = document.createElement("ul");
     let tns = [];
     for (let i = 0; i < telephonesList.length; i++) {
       tns.push(telephonesList[i].firstChild.nodeValue);
-      let li = document.createElement("li");
-      li.textContent = telephonesList[i].firstChild.nodeValue;
-      tnUL.appendChild(li);
-      console.log(tnUL);
     }
 
-    return tnUL.outerHTML;
+    return tns;
   }
+
   render() {
     return (
       <div>
-        <div dangerouslySetInnerHTML={{ __html: this.getTNList() }}></div>
+        <h1 className="title">Voice Order Details</h1>
+        <div>
+          <ul>
+            {this.getTNList().map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }
