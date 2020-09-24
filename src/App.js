@@ -15,11 +15,14 @@ class App extends Component {
     const telephonesList = doc.getElementsByTagName("TelephoneNumberId");
     let tns = [];
     for (let i = 0; i < telephonesList.length; i++) {
-      tns.push(telephonesList[i].firstChild.nodeValue);
+      if (!tns.includes(telephonesList[i].firstChild.nodeValue))
+        tns.push(telephonesList[i].firstChild.nodeValue);
     }
 
     return tns;
   }
+
+  getVoiceRootTN() {}
 
   render() {
     return (
@@ -28,7 +31,9 @@ class App extends Component {
         <div>
           <ul>
             {this.getTNList().map((item) => (
-              <li>{item}</li>
+              <li>
+                <a href="">{item}</a>
+              </li>
             ))}
           </ul>
         </div>
