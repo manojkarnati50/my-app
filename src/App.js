@@ -9,6 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedPhoneNumber: "",
       screenName: "Voice Order Details",
       telephonesList: [],
       serviceIdentifier: "",
@@ -33,9 +34,11 @@ class App extends Component {
       Value: "",
       customAction: "",
       BeforeValue: "",
+      rootItem: "",
     };
     this.setTelePhoneHandler = this.setTelePhoneHandler.bind(this);
-    this.getLeafItemNodes = this.getLeafItemNodes(this);
+    this.getRootNode = this.getRootNode.bind(this);
+    this.getLeafNodes = this.getLeafNodes.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +46,8 @@ class App extends Component {
       telephonesList: this.getTNList(),
       selectedPhoneNumber: this.getTNList()[0],
     });
+    this.getRootNode(this.state.selectedPhoneNumber);
+    this.getLeafNodes(this.state.selectedPhoneNumber);
   }
   getTNList() {
     const domParser = new DOMParser();
@@ -53,20 +58,24 @@ class App extends Component {
       if (!tns.includes(telephoneNodes[i].firstChild.nodeValue))
         tns.push(telephoneNodes[i].firstChild.nodeValue);
     }
+    this.getRootNode(tns[0]);
     return tns;
   }
 
   setTelePhoneHandler(item) {
+    alert(item);
     this.setState({
       selectedPhoneNumber: item,
     });
+    this.getRootNode(this.state.selectedPhoneNumber);
   }
-  getVoiceRootTN(telephone) {
-    alert("telephone" + telephone);
+  getRootNode(telephone) {
+    alert("telephone in root node:" + telephone);
     let rootItem = "";
     const domParser = new DOMParser();
     const doc = domParser.parseFromString(sampleData, "application/xml");
     const itemNodes = doc.getElementsByTagName("Item");
+    console.log(itemNodes);
     for (let i = 0; i < itemNodes.length; i++) {
       let itemNode = itemNodes[i];
       let tn = itemNode.getElementsByTagName("TelephoneNumberId")[0]
@@ -76,15 +85,15 @@ class App extends Component {
       let provCode = itemNode.getElementsByTagName("ProvisioningCode")[0]
         .textContent;
       if ("ROOT" === heiLevel && "SBPP" === provCode && telephone === tn) {
+        alert("inside loop");
         rootItem = itemNode;
       }
-      console.log("in app.js");
       console.log(rootItem);
       return rootItem;
     }
   }
 
-  getLeafItemNodes = (props) => {
+  getLeafNodes = (telephone) => {
     let leafItems = [];
     const domParser = new DOMParser();
     const doc = domParser.parseFromString(sampleData, "application/xml");
@@ -98,11 +107,7 @@ class App extends Component {
         .textContent;
       let provCode = itemNode.getElementsByTagName("ProvisioningCode")[0]
         .textContent;
-      if (
-        "LEAF" === heiLevel &&
-        "SBPP" === provCode &&
-        props.selectedPhoneNumber === tn
-      ) {
+      if ("LEAF" === heiLevel && "SBPP" === provCode && telephone === tn) {
         leafItems.push(itemNode);
       }
       console.log(this.leafItems);
@@ -236,6 +241,7 @@ class App extends Component {
             {logoDiv}
             {telephonesListDiv}
           </div>
+
           <div class="col-container">
             <div class="container-2">
               <div class="col-container">
@@ -247,6 +253,7 @@ class App extends Component {
                 <div>{customfieldsTable}</div>
               </div>
             </div>
+
             <div class="container-3">
               <div class="col-container">
                 <div class="row-container">
