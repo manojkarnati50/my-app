@@ -10,8 +10,6 @@ class VoiceOrderDetails extends Component {
     };
   }
   componentDidMount() {
-    console.log("selected phone Number: " + this.props.selectedPhoneNumber);
-
     this.setState({
       itemNodes: getItemNodes(this.props.selectedPhoneNumber),
       rootItem: getRootItemNode(),
@@ -20,10 +18,11 @@ class VoiceOrderDetails extends Component {
   }
 
   render() {
-    console.log("inside render" + this.props.selectedPhoneNumber);
+    //console.log("inside render" + this.props.selectedPhoneNumber);
     return (
       <div>
-        Manoj {this.props.selectedPhoneNumber} {this.state.selected}
+        selected Telephone Number: {this.props.selectedPhoneNumber}{" "}
+        {this.state.selected}
       </div>
     );
   }
