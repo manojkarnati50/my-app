@@ -49,6 +49,14 @@ class App extends Component {
     this.getRootNode(this.state.selectedPhoneNumber);
     this.getLeafNodes(this.state.selectedPhoneNumber);
   }
+  setTelePhoneHandler(item) {
+    alert("selected telephone number before adding it to state:" + item);
+    this.setState({
+      selectedPhoneNumber: item,
+    });
+    alert(" After adding it to state:" + item);
+    this.getRootNode(item);
+  }
   getTNList() {
     const domParser = new DOMParser();
     const doc = domParser.parseFromString(sampleData, "application/xml");
@@ -59,23 +67,17 @@ class App extends Component {
         tns.push(telephoneNodes[i].firstChild.nodeValue);
     }
     this.getRootNode(tns[0]);
+    this.getLeafNodes(tns[0]);
+
     return tns;
   }
 
-  setTelePhoneHandler(item) {
-    alert(item);
-    this.setState({
-      selectedPhoneNumber: item,
-    });
-    this.getRootNode(this.state.selectedPhoneNumber);
-  }
   getRootNode(telephone) {
-    alert("telephone in root node:" + telephone);
     let rootItem = "";
     const domParser = new DOMParser();
     const doc = domParser.parseFromString(sampleData, "application/xml");
     const itemNodes = doc.getElementsByTagName("Item");
-    console.log(itemNodes);
+
     for (let i = 0; i < itemNodes.length; i++) {
       let itemNode = itemNodes[i];
       let tn = itemNode.getElementsByTagName("TelephoneNumberId")[0]
@@ -85,10 +87,79 @@ class App extends Component {
       let provCode = itemNode.getElementsByTagName("ProvisioningCode")[0]
         .textContent;
       if ("ROOT" === heiLevel && "SBPP" === provCode && telephone === tn) {
-        alert("inside loop");
-        rootItem = itemNode;
+        let sid,
+          psid,
+          tnsid,
+          wpiid,
+          asc,
+          job,
+          restore,
+          action,
+          accid,
+          hlvl,
+          status,
+          prov,
+          pdesc,
+          type,
+          stype,
+          stagecode,
+          identifier,
+          name,
+          value,
+          cusAction,
+          beforeValue;
+        if (itemNode.getElementsByTagName("Job")[0])
+          job = itemNode.getElementsByTagName("Job")[0].textContent;
+
+        if (itemNode.getElementsByTagName("ServiceIdentifier")[0])
+          sid = itemNode.getElementsByTagName("ServiceIdentifier")[0]
+            .textContent;
+
+        if (itemNode.getElementsByTagName("ParentServiceIdentifier")[0])
+          psid = itemNode.getElementsByTagName("ParentServiceIdentifier")[0]
+            .textContent;
+        if (itemNode.getElementsByTagName("TelephoneNumberId")[0])
+          tnsid = itemNode.getElementsByTagName("TelephoneNumberId")[0]
+            .textContent;
+        if (itemNode.getElementsByTagName("WorkPlanItemIdentifier")[0])
+          wpiid = itemNode.getElementsByTagName("WorkPlanItemIdentifier")[0]
+            .textContent;
+        if (itemNode.getElementsByTagName("AccountStageCode")[0])
+          asc = itemNode.getElementsByTagName("AccountStageCode")[0]
+            .textContent;
+        if (itemNode.getElementsByTagName("Restore")[0])
+          restore = itemNode.getElementsByTagName("Restore")[0].textContent;
+        if (itemNode.getElementsByTagName("Action")[0])
+          action = itemNode.getElementsByTagName("Action")[0].textContent;
+        if (itemNode.getElementsByTagName("AccountId")[0])
+          accid = itemNode.getElementsByTagName("AccountId")[0].textContent;
+        if (itemNode.getElementsByTagName("Status")[0])
+          status = itemNode.getElementsByTagName("Status")[0].textContent;
+        if (itemNode.getElementsByTagName("HierarchyLevel")[0])
+          hlvl = itemNode.getElementsByTagName("HierarchyLevel")[0].textContent;
+        if (itemNode.getElementsByTagName("ProvisioningCode")[0])
+          provCode = itemNode.getElementsByTagName("ProvisioningCode")[0]
+            .textContent;
+        if (itemNode.getElementsByTagName("ProvisioningCodeDescription")[0])
+          pdesc = itemNode.getElementsByTagName(
+            "ProvisioningCodeDescription"
+          )[0].textContent;
+        this.setState({
+          serviceIdentifier: sid,
+          ParentServiceIdentifier: psid,
+          TelephoneNumberId: tnsid,
+          WorkPlanItemIdentifier: wpiid,
+          AccountStageCode: asc,
+          Restore: restore,
+          Action: action,
+          AccountId: accid,
+          status: status,
+          heiLevel: hlvl,
+          ProvisioningCode: provCode,
+          ProvisioningCodeDescription: pdesc,
+        });
       }
-      console.log(rootItem);
+
       return rootItem;
     }
   }
@@ -138,43 +209,43 @@ class App extends Component {
       <table>
         <tr>
           <th>ServiceIdentifier</th>
-          <th>eightchar</th>
+          <th>{this.state.serviceIdentifier}</th>
         </tr>
         <tr>
           <th>ParentServiceIdentifier</th>
-          <th>eightchar</th>
+          <th>{this.state.ParentServiceIdentifier}</th>
         </tr>
         <tr>
           <th>EquipmentId</th>
-          <th>eightchar</th>
+          <th>{this.state.EquipmentId}</th>
         </tr>
         <tr>
           <th>TelephoneNumberId</th>
-          <th>eightchar</th>
+          <th>{this.state.TelephoneNumberId}</th>
         </tr>
         <tr>
           <th>WorkPlanItemIdentifier</th>
-          <th>eightchar</th>
+          <th>{this.state.WorkPlanItemIdentifier}</th>
         </tr>
         <tr>
           <th>TelephoneNumberICallingCardId UserDefinedIdentifier</th>
-          <th>eightchar</th>
+          <th>some random value</th>
         </tr>
         <tr>
           <th>AccountStageCode </th>
-          <th>eightchar</th>
+          <th>{this.state.AccountStageCode}</th>
         </tr>
         <tr>
           <th>JobExists</th>
-          <th>eightchar</th>
+          <th>{this.state.JobExists}</th>
         </tr>
         <tr>
           <th>Restore</th>
-          <th>eightchar</th>
+          <th>{this.state.Restore}</th>
         </tr>
         <tr>
           <th>Action</th>
-          <th>eightchar</th>
+          <th>{this.state.Action}</th>
         </tr>
       </table>
     );
@@ -182,24 +253,23 @@ class App extends Component {
       <table>
         <tr>
           <th>AccountId</th>
-          <th>eightchar</th>
+          <th>{this.state.AccountId}</th>
         </tr>
         <tr>
           <th>Status</th>
-          <th>eightchar</th>
+          <th>{this.state.status}</th>
         </tr>
         <tr>
           <th>HierarchyLevel</th>
-          <th>ROOT</th>
+          <th>{this.state.heiLevel}</th>
         </tr>
         <tr>
           <th>ProvisioningCode</th>
-          <th>LINE</th>
+          <th>{this.state.ProvisioningCode}</th>
         </tr>
         <tr colspan="2">
           <th>ProvisioningCodeDescription</th>
-          <th></th>
-          <th>eightchar</th>
+          <th>{this.state.ProvisioningCodeDescription}</th>
         </tr>
         <tr>
           <th rowspan="4">LineOfBusines</th>
@@ -234,6 +304,7 @@ class App extends Component {
         <tr></tr>
       </table>
     );
+
     return (
       <div class="pallete">
         <div class="row-container">
