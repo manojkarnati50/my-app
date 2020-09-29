@@ -102,12 +102,7 @@ class App extends Component {
           pdesc,
           type,
           stype,
-          stagecode,
-          identifier,
-          name,
-          value,
-          cusAction,
-          beforeValue;
+          stagecode;
         if (itemNode.getElementsByTagName("Job")[0])
           job = itemNode.getElementsByTagName("Job")[0].textContent;
         if (itemNode.getElementsByTagName("ServiceIdentifier")[0])
@@ -156,9 +151,38 @@ class App extends Component {
               .textContent;
         }
 
-        //console.log(itemNodes[i].getElementsByTagName("CustomField"));
-        //let customFieldNodes = itemNodes[i].getElementsByTagName("CustomField");
-        // console.log(customFieldNodes.length);
+        const customFieldNodes = itemNode.getElementsByTagName("CustomField");
+
+        for (let k = 0; k < customFieldNodes.length; k++) {
+          const customNode = itemNode.getElementsByTagName("CustomField")[k];
+          /*
+          
+          console.log(customNode.childNodes[0].textContent);
+          let identifier, name, value, customAction;
+          if (customNode.getElementsByTagName("Identifier"))
+            identifier = customNode.getElementsByTagName("Identifier")[0]
+              .textContent;
+          if (customNode.getElementsByTagName("Name"))
+            name = customNode.getElementsByTagName("Name")[0].textContent;
+          if (customNode.getElementsByTagName("Value"))
+            value = customNode.getElementsByTagName("Value")[0].textContent;
+          if (customNode.getElementsByTagName("Action"))
+            customAction = customNode.getElementsByTagName("Action")[0]
+              .textContent;
+*/
+          let tableElement = document.getElementById("customfieldstable");
+          const rowElement = document.createElement("tr");
+          for (let c = 0; c < customNode.childNodes.length; c++) {
+            let columnElement = document.createElement("th");
+            let textElement = document.createTextNode(
+              customNode.childNodes[c].textContent
+            );
+            columnElement.appendChild(textElement);
+            rowElement.appendChild(columnElement);
+            console.log(rowElement);
+          }
+          tableElement.appendChild(rowElement);
+        }
 
         this.setState({
           serviceIdentifier: sid,
@@ -309,7 +333,7 @@ class App extends Component {
       </table>
     );
     let customfieldsTable = (
-      <table>
+      <table id="customfieldstable">
         <tr rowspan="5">
           <th>Custom Fields</th>
         </tr>
