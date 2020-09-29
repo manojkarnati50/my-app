@@ -12,29 +12,72 @@ class App extends Component {
       selectedPhoneNumber: "",
       screenName: "Voice Order Details",
       telephonesList: [],
-      serviceIdentifier: "",
-      ParentServiceIdentifier: "",
-      EquipmentId: "",
-      TelephoneNumberId: "",
-      WorkPlanItemIdentifier: "",
-      JobExists: "",
-      AccountStageCode: "",
-      Restore: "",
-      Action: "",
-      AccountId: "",
-      Status: "",
-      HierarchyLevel: "",
-      ProvisioningCode: "",
-      ProvisioningCodeDescription: "",
-      Type: "",
-      SubType: "",
-      StageCode: "",
       Identifier: "",
       Name: "",
       Value: "",
       customAction: "",
       BeforeValue: "",
-      rootItem: "",
+      rootItem: [
+        {
+          ServiceIdentifier: "",
+          ParentServiceIdentifier: "",
+          EquipmentId: "",
+          TelephoneNumberId: "",
+          WorkPlanItemIdentifier: "",
+          AccountStageCode: "",
+          Job: "",
+          Restore: "",
+          Action: "",
+          AccountId: "",
+          HierarchyLevel: "",
+          Status: "",
+          ProvisioningCode: "",
+          ProvisioningCodeDescription: "",
+          LineOfBusiness: [{ Type: "", SubType: "", StageCode: "" }],
+          Type: "",
+          SubType: "",
+          StageCode: "",
+          CustomField: [
+            {
+              Identifier: "",
+              Name: "",
+              Value: "",
+              customAction: "",
+              BeforeValue: "",
+            },
+          ],
+        },
+      ],
+      leafItems: [
+        {
+          ServiceIdentifier: "",
+          ParentServiceIdentifier: "",
+          EquipmentId: "",
+          TelephoneNumberId: "",
+          WorkPlanItemIdentifier: "",
+          AccountStageCode: "",
+          Job: "",
+          Restore: "",
+          Action: "",
+          AccountId: "",
+          HierarchyLevel: "",
+          Status: "",
+          ProvisioningCode: "",
+          ProvisioningCodeDescription: "",
+          Type: "",
+          sType: "",
+          SubType: "",
+          CustomField: [
+            {
+              Identifier: "",
+              Name: "",
+              Value: "",
+              customAction: "",
+              BeforeValue: "",
+            },
+          ],
+        },
+      ],
     };
     this.setTelePhoneHandler = this.setTelePhoneHandler.bind(this);
     this.getRootNode = this.getRootNode.bind(this);
@@ -89,8 +132,10 @@ class App extends Component {
           .textContent;
       if (heiLevel === "ROOT" && provCode === "SBPP" && tn === telephone) {
         alert("came hereee");
+
         let sid,
           psid,
+          eqid,
           tnsid,
           wpiid,
           asc,
@@ -113,6 +158,8 @@ class App extends Component {
         if (itemNode.getElementsByTagName("ParentServiceIdentifier")[0])
           psid = itemNode.getElementsByTagName("ParentServiceIdentifier")[0]
             .textContent;
+        if (itemNode.getElementsByTagName("EquipmentId")[0])
+          eqid = itemNode.getElementsByTagName("EquipmentId")[0].textContent;
         if (itemNode.getElementsByTagName("TelephoneNumberId")[0])
           tnsid = itemNode.getElementsByTagName("TelephoneNumberId")[0]
             .textContent;
@@ -179,21 +226,33 @@ class App extends Component {
         }
 
         this.setState({
-          serviceIdentifier: sid,
-          ParentServiceIdentifier: psid,
-          TelephoneNumberId: tnsid,
-          WorkPlanItemIdentifier: wpiid,
-          AccountStageCode: asc,
-          Restore: restore,
-          Action: action,
-          AccountId: accid,
-          status: status,
-          heiLevel: hlvl,
-          ProvisioningCode: provCode,
-          ProvisioningCodeDescription: pdesc,
-          Type: type,
-          SubType: stype,
-          StageCode: stagecode,
+          rootItem: [
+            {
+              ServiceIdentifier: sid,
+              ParentServiceIdentifier: psid,
+              EquipmentId: eqid,
+              TelephoneNumberId: tnsid,
+              WorkPlanItemIdentifier: wpiid,
+              AccountStageCode: asc,
+              Restore: restore,
+              Action: action,
+              AccountId: accid,
+              Status: status,
+              HierarchyLevel: hlvl,
+              ProvisioningCode: provCode,
+              ProvisioningCodeDescription: pdesc,
+              Type: type,
+              SubType: stype,
+              StageCode: stagecode,
+              LineOfBusines: [
+                {
+                  Type: type,
+                  SubType: stype,
+                  StageCode: stagecode,
+                },
+              ],
+            },
+          ],
         });
       }
     }
@@ -245,23 +304,23 @@ class App extends Component {
       <table>
         <tr>
           <th>ServiceIdentifier</th>
-          <th>{this.state.serviceIdentifier}</th>
+          <th>{this.state.rootItem[0].ServiceIdentifier}</th>
         </tr>
         <tr>
           <th>ParentServiceIdentifier</th>
-          <th>{this.state.ParentServiceIdentifier}</th>
+          <th>{this.state.rootItem[0].ParentServiceIdentifier}</th>
         </tr>
         <tr>
           <th>EquipmentId</th>
-          <th>{this.state.EquipmentId}</th>
+          <th>{this.state.rootItem[0].EquipmentId}</th>
         </tr>
         <tr>
           <th>TelephoneNumberId</th>
-          <th>{this.state.TelephoneNumberId}</th>
+          <th>{this.state.rootItem[0].TelephoneNumberId}</th>
         </tr>
         <tr>
           <th>WorkPlanItemIdentifier</th>
-          <th>{this.state.WorkPlanItemIdentifier}</th>
+          <th>{this.state.rootItem[0].WorkPlanItemIdentifier}</th>
         </tr>
         <tr>
           <th>TelephoneNumberICallingCardId UserDefinedIdentifier</th>
@@ -269,19 +328,19 @@ class App extends Component {
         </tr>
         <tr>
           <th>AccountStageCode </th>
-          <th>{this.state.AccountStageCode}</th>
+          <th>{this.state.rootItem[0].AccountStageCode}</th>
         </tr>
         <tr>
           <th>JobExists</th>
-          <th>{this.state.JobExists}</th>
+          <th>{this.state.rootItem[0].Job}</th>
         </tr>
         <tr>
           <th>Restore</th>
-          <th>{this.state.Restore}</th>
+          <th>{this.state.rootItem[0].Restore}</th>
         </tr>
         <tr>
           <th>Action</th>
-          <th>{this.state.Action}</th>
+          <th>{this.state.rootItem[0].Action}</th>
         </tr>
       </table>
     );
@@ -289,38 +348,38 @@ class App extends Component {
       <table>
         <tr>
           <th>AccountId</th>
-          <th>{this.state.AccountId}</th>
+          <th>{this.state.rootItem[0].AccountId}</th>
         </tr>
         <tr>
           <th>Status</th>
-          <th>{this.state.status}</th>
+          <th>{this.state.rootItem[0].Status}</th>
         </tr>
         <tr>
           <th>HierarchyLevel</th>
-          <th>{this.state.heiLevel}</th>
+          <th>{this.state.rootItem[0].HierarchyLevel}</th>
         </tr>
         <tr>
           <th>ProvisioningCode</th>
-          <th>{this.state.ProvisioningCode}</th>
+          <th>{this.state.rootItem[0].ProvisioningCode}</th>
         </tr>
         <tr colspan="2">
           <th>ProvisioningCodeDescription</th>
-          <th>{this.state.ProvisioningCodeDescription}</th>
+          <th>{this.state.rootItem[0].ProvisioningCodeDescription}</th>
         </tr>
         <tr>
           <th rowspan="4">LineOfBusines</th>
 
           <tr>
             <th>Type</th>
-            <th>{this.state.Type}</th>
+            <th>{this.state.rootItem[0].Type}</th>
           </tr>
           <tr>
             <th>SubType</th>
-            <th>{this.state.SubType}</th>
+            <th>{this.state.rootItem[0].SubType}</th>
           </tr>
           <tr>
             <th>StageCode</th>
-            <th>{this.state.StageCode}</th>
+            <th>{this.state.rootItem[0].StageCode}</th>
           </tr>
         </tr>
       </table>
