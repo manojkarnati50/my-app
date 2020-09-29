@@ -44,17 +44,15 @@ class App extends Component {
   componentDidMount() {
     this.setState({
       telephonesList: this.getTNList(),
-      selectedPhoneNumber: this.getTNList()[0],
+      //selectedPhoneNumber: this.getTNList()[0],
     });
     //this.getRootNode(this.state.selectedPhoneNumber);
     this.getLeafNodes(this.state.selectedPhoneNumber);
   }
   setTelePhoneHandler(item) {
-    //alert("selected telephone number before adding it to state:" + item);
     this.setState({
       selectedPhoneNumber: item,
     });
-    //alert(" After adding it to state:" + item);
     this.getRootNode(item);
   }
   getTNList() {
@@ -67,7 +65,7 @@ class App extends Component {
         tns.push(telephoneNodes[i].firstChild.nodeValue);
     }
     this.getRootNode(tns[0]);
-    this.getLeafNodes(tns[0]);
+    //this.getLeafNodes(tns[0]);
 
     return tns;
   }
@@ -156,8 +154,12 @@ class App extends Component {
         }
         const customFieldNodes = itemNode.getElementsByTagName("CustomField");
 
-        const clearTable = document.getElementById("customfieldstable");
-        clearTable.innerHTML = "";
+        var tableHeaderRowCount = 3;
+        var table = document.getElementById("customfieldstable");
+        var rowCount = table.rows.length;
+        for (var purge = tableHeaderRowCount; purge < rowCount; purge++) {
+          table.deleteRow(tableHeaderRowCount);
+        }
         for (let k = 0; k < customFieldNodes.length; k++) {
           const customNode = itemNode.getElementsByTagName("CustomField")[k];
           let tableElement = document.getElementById("customfieldstable");
