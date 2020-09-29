@@ -46,7 +46,7 @@ class App extends Component {
       telephonesList: this.getTNList(),
       selectedPhoneNumber: this.getTNList()[0],
     });
-    this.getRootNode(this.state.selectedPhoneNumber);
+    //this.getRootNode(this.state.selectedPhoneNumber);
     this.getLeafNodes(this.state.selectedPhoneNumber);
   }
   setTelePhoneHandler(item) {
@@ -90,6 +90,7 @@ class App extends Component {
         provCode = itemNode.getElementsByTagName("ProvisioningCode")[0]
           .textContent;
       if (heiLevel === "ROOT" && provCode === "SBPP" && tn === telephone) {
+        alert("came hereee");
         let sid,
           psid,
           tnsid,
@@ -154,6 +155,9 @@ class App extends Component {
               .textContent;
         }
         const customFieldNodes = itemNode.getElementsByTagName("CustomField");
+
+        const clearTable = document.getElementById("customfieldstable");
+        clearTable.innerHTML = "";
         for (let k = 0; k < customFieldNodes.length; k++) {
           const customNode = itemNode.getElementsByTagName("CustomField")[k];
           let tableElement = document.getElementById("customfieldstable");
