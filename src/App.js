@@ -519,27 +519,28 @@ class App extends Component {
         <tr></tr>
       </table>
     );
-    let leafServiceIdentifierTable = (i) => (
+
+    let leafServiceIdentifierTable = (
       <table>
         <tr>
           <th>ServiceIdentifier</th>
-          <th>{this.state.leafItems[i].ServiceIdentifier}</th>
+          <th>{this.state.leafItems[0].ServiceIdentifier}</th>
         </tr>
         <tr>
           <th>ParentServiceIdentifier</th>
-          <th>{this.state.leafItems[i].ParentServiceIdentifier}</th>
+          <th>{this.state.leafItems[0].ParentServiceIdentifier}</th>
         </tr>
         <tr>
           <th>EquipmentId</th>
-          <th>{this.state.leafItems[i].EquipmentId}</th>
+          <th>{this.state.leafItems[0].EquipmentId}</th>
         </tr>
         <tr>
           <th>TelephoneNumberId</th>
-          <th>{this.state.leafItems[i].TelephoneNumberId}</th>
+          <th>{this.state.leafItems[0].TelephoneNumberId}</th>
         </tr>
         <tr>
           <th>WorkPlanItemIdentifier</th>
-          <th>{this.state.leafItems[i].WorkPlanItemIdentifier}</th>
+          <th>{this.state.leafItems[0].WorkPlanItemIdentifier}</th>
         </tr>
         <tr>
           <th>TelephoneNumberICallingCardId UserDefinedIdentifier</th>
@@ -547,58 +548,58 @@ class App extends Component {
         </tr>
         <tr>
           <th>AccountStageCode </th>
-          <th>{this.state.leafItems[i].AccountStageCode}</th>
+          <th>{this.state.leafItems[0].AccountStageCode}</th>
         </tr>
         <tr>
           <th>JobExists</th>
-          <th>{this.state.leafItems[i].Job}</th>
+          <th>{this.state.leafItems[0].Job}</th>
         </tr>
         <tr>
           <th>Restore</th>
-          <th>{this.state.leafItems[i].Restore}</th>
+          <th>{this.state.leafItems[0].Restore}</th>
         </tr>
         <tr>
           <th>Action</th>
-          <th>{this.state.leafItems[i].Action}</th>
+          <th>{this.state.leafItems[0].Action}</th>
         </tr>
       </table>
     );
-    let leafAccountIdTable = (i) => (
+    let leafAccountIdTable = (
       <table>
         <tr>
           <th>AccountId</th>
-          <th>{this.state.leafItems[i].AccountId}</th>
+          <th>{this.state.leafItems[0].AccountId}</th>
         </tr>
         <tr>
           <th>Status</th>
-          <th>{this.state.leafItems[i].Status}</th>
+          <th>{this.state.leafItems[0].Status}</th>
         </tr>
         <tr>
           <th>HierarchyLevel</th>
-          <th>{this.state.leafItems[i].HierarchyLevel}</th>
+          <th>{this.state.leafItems[0].HierarchyLevel}</th>
         </tr>
         <tr>
           <th>ProvisioningCode</th>
-          <th>{this.state.leafItems[i].ProvisioningCode}</th>
+          <th>{this.state.leafItems[0].ProvisioningCode}</th>
         </tr>
         <tr colspan="2">
           <th>ProvisioningCodeDescription</th>
-          <th>{this.state.leafItems[i].ProvisioningCodeDescription}</th>
+          <th>{this.state.leafItems[0].ProvisioningCodeDescription}</th>
         </tr>
         <tr>
           <th rowspan="4">LineOfBusines</th>
 
           <tr>
             <th>Type</th>
-            <th>{this.state.leafItems[i].Type}</th>
+            <th>{this.state.leafItems[0].Type}</th>
           </tr>
           <tr>
             <th>SubType</th>
-            <th>{this.state.leafItems[i].SubType}</th>
+            <th>{this.state.leafItems[0].SubType}</th>
           </tr>
           <tr>
             <th>StageCode</th>
-            <th>{this.state.leafItems[i].StageCode}</th>
+            <th>{this.state.leafItems[0].StageCode}</th>
           </tr>
         </tr>
       </table>
@@ -618,10 +619,6 @@ class App extends Component {
         <tr></tr>
       </table>
     );
-    for (let i = 0; i < this.state.leafItems.length; i++) {
-      leafServiceIdentifierTable(i);
-      leafAccountIdTable(i);
-    }
     return (
       <div class="pallete">
         <div class="row-container">
