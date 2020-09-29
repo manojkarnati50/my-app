@@ -50,11 +50,11 @@ class App extends Component {
     this.getLeafNodes(this.state.selectedPhoneNumber);
   }
   setTelePhoneHandler(item) {
-    alert("selected telephone number before adding it to state:" + item);
+    //alert("selected telephone number before adding it to state:" + item);
     this.setState({
       selectedPhoneNumber: item,
     });
-    alert(" After adding it to state:" + item);
+    //alert(" After adding it to state:" + item);
     this.getRootNode(item);
   }
   getTNList() {
@@ -80,13 +80,16 @@ class App extends Component {
 
     for (let i = 0; i < itemNodes.length; i++) {
       let itemNode = itemNodes[i];
-      let tn = itemNode.getElementsByTagName("TelephoneNumberId")[0]
-        .textContent;
-      let heiLevel = itemNode.getElementsByTagName("HierarchyLevel")[0]
-        .textContent;
-      let provCode = itemNode.getElementsByTagName("ProvisioningCode")[0]
-        .textContent;
-      if ("ROOT" === heiLevel && "SBPP" === provCode && telephone === tn) {
+      let tn, heiLevel, provCode;
+      if (itemNode.getElementsByTagName("TelephoneNumberId")[0])
+        tn = itemNode.getElementsByTagName("TelephoneNumberId")[0].textContent;
+      if (itemNode.getElementsByTagName("HierarchyLevel")[0])
+        heiLevel = itemNode.getElementsByTagName("HierarchyLevel")[0]
+          .textContent;
+      if (itemNode.getElementsByTagName("ProvisioningCode")[0])
+        provCode = itemNode.getElementsByTagName("ProvisioningCode")[0]
+          .textContent;
+      if (heiLevel === "ROOT" && provCode === "SBPP" && tn === telephone) {
         let sid,
           psid,
           tnsid,
@@ -150,28 +153,13 @@ class App extends Component {
             stagecode = lobNode.getElementsByTagName("StageCode")[0]
               .textContent;
         }
-
         const customFieldNodes = itemNode.getElementsByTagName("CustomField");
-
         for (let k = 0; k < customFieldNodes.length; k++) {
           const customNode = itemNode.getElementsByTagName("CustomField")[k];
-          /*
-          
-          console.log(customNode.childNodes[0].textContent);
-          let identifier, name, value, customAction;
-          if (customNode.getElementsByTagName("Identifier"))
-            identifier = customNode.getElementsByTagName("Identifier")[0]
-              .textContent;
-          if (customNode.getElementsByTagName("Name"))
-            name = customNode.getElementsByTagName("Name")[0].textContent;
-          if (customNode.getElementsByTagName("Value"))
-            value = customNode.getElementsByTagName("Value")[0].textContent;
-          if (customNode.getElementsByTagName("Action"))
-            customAction = customNode.getElementsByTagName("Action")[0]
-              .textContent;
-*/
           let tableElement = document.getElementById("customfieldstable");
           const rowElement = document.createElement("tr");
+          console.log(customNode.childNodes);
+
           for (let c = 0; c < customNode.childNodes.length; c++) {
             let columnElement = document.createElement("th");
             let textElement = document.createTextNode(
@@ -202,9 +190,8 @@ class App extends Component {
           StageCode: stagecode,
         });
       }
-
-      return rootItem;
     }
+    return rootItem;
   }
 
   getLeafNodes = (telephone) => {
