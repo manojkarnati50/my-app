@@ -110,11 +110,9 @@ class App extends Component {
           beforeValue;
         if (itemNode.getElementsByTagName("Job")[0])
           job = itemNode.getElementsByTagName("Job")[0].textContent;
-
         if (itemNode.getElementsByTagName("ServiceIdentifier")[0])
           sid = itemNode.getElementsByTagName("ServiceIdentifier")[0]
             .textContent;
-
         if (itemNode.getElementsByTagName("ParentServiceIdentifier")[0])
           psid = itemNode.getElementsByTagName("ParentServiceIdentifier")[0]
             .textContent;
@@ -138,12 +136,30 @@ class App extends Component {
         if (itemNode.getElementsByTagName("HierarchyLevel")[0])
           hlvl = itemNode.getElementsByTagName("HierarchyLevel")[0].textContent;
         if (itemNode.getElementsByTagName("ProvisioningCode")[0])
-          provCode = itemNode.getElementsByTagName("ProvisioningCode")[0]
+          prov = itemNode.getElementsByTagName("ProvisioningCode")[0]
             .textContent;
         if (itemNode.getElementsByTagName("ProvisioningCodeDescription")[0])
           pdesc = itemNode.getElementsByTagName(
             "ProvisioningCodeDescription"
           )[0].textContent;
+
+        const lobNode = itemNode.getElementsByTagName("LineOfBusiness")[0];
+        console.log(lobNode.getElementsByTagName("Type")[0].textContent);
+        if (lobNode) {
+          if (lobNode.getElementsByTagName("Type")[0])
+            type = lobNode.getElementsByTagName("Type")[0].textContent;
+
+          if (lobNode.getElementsByTagName("SubType")[0])
+            stype = lobNode.getElementsByTagName("SubType")[0].textContent;
+          if (lobNode.getElementsByTagName("StageCode")[0])
+            stagecode = lobNode.getElementsByTagName("StageCode")[0]
+              .textContent;
+        }
+
+        //console.log(itemNodes[i].getElementsByTagName("CustomField"));
+        //let customFieldNodes = itemNodes[i].getElementsByTagName("CustomField");
+        // console.log(customFieldNodes.length);
+
         this.setState({
           serviceIdentifier: sid,
           ParentServiceIdentifier: psid,
@@ -157,6 +173,9 @@ class App extends Component {
           heiLevel: hlvl,
           ProvisioningCode: provCode,
           ProvisioningCodeDescription: pdesc,
+          Type: type,
+          SubType: stype,
+          StageCode: stagecode,
         });
       }
 
@@ -276,15 +295,15 @@ class App extends Component {
 
           <tr>
             <th>Type</th>
-            <th>T</th>
+            <th>{this.state.Type}</th>
           </tr>
           <tr>
             <th>SubType</th>
-            <th>LOCAL</th>
+            <th>{this.state.SubType}</th>
           </tr>
           <tr>
             <th>StageCode</th>
-            <th>C</th>
+            <th>{this.state.StageCode}</th>
           </tr>
         </tr>
       </table>
