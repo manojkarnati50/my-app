@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import sampleData from "./xmls/items_list.js";
-import VoiceOrderDetails from "./VoiceOrderDetails";
 import "./layout.css";
 import logo from "./images/back.png";
 
@@ -211,14 +210,15 @@ class App extends Component {
           let tableElement = document.getElementById("customfieldstable");
           const rowElement = document.createElement("tr");
 
-          for (let c = 0; c < customNode.childNodes.length; c++) {
+          for (let c = 0; c < 5; c++) {
             let columnElement = document.createElement("th");
-            let textElement = document.createTextNode(
-              customNode.childNodes[c].textContent
-            );
+            let textElement = customNode.childNodes[c]
+              ? document.createTextNode(customNode.childNodes[c].textContent)
+              : document.createTextNode("");
             columnElement.appendChild(textElement);
             rowElement.appendChild(columnElement);
           }
+
           tableElement.appendChild(rowElement);
         }
 
@@ -355,14 +355,13 @@ class App extends Component {
           const rowElement = document.createElement("tr");
           console.log(customNode.childNodes);
 
-          for (let c = 0; c < customNode.childNodes.length; c++) {
+          for (let c = 0; c < 5; c++) {
             let columnElement = document.createElement("th");
-            let textElement = document.createTextNode(
-              customNode.childNodes[c].textContent
-            );
+            let textElement = customNode.childNodes[c]
+              ? document.createTextNode(customNode.childNodes[c].textContent)
+              : document.createTextNode("");
             columnElement.appendChild(textElement);
             rowElement.appendChild(columnElement);
-            console.log(rowElement);
           }
           tableElement.appendChild(rowElement);
         }
@@ -409,11 +408,11 @@ class App extends Component {
     );
     let telephonesListDiv = (
       <div class="box-2">
-        <ul>
-          <span class="heading">TelephoneNumbers</span>
+        <ul class="flex-ul">
+          <span class="flex-heading">TelephoneNumbers</span>
           {this.state.telephonesList.map((item) => (
-            <li key={item}>
-              <p onClick={() => this.setTelePhoneHandler(item)}>{item}</p>
+            <li class="flex-li" key={item}>
+              <a onClick={() => this.setTelePhoneHandler(item)}>{item}</a>
             </li>
           ))}
         </ul>
@@ -507,7 +506,9 @@ class App extends Component {
     let customfieldsTable = (
       <table id="customfieldstable">
         <tr rowspan="5">
-          <th>Custom Fields</th>
+          <th colspan="5" style={{ textAlign: "center" }}>
+            Custom Fields
+          </th>
         </tr>
         <tr>
           <th>Identifier</th>
@@ -582,7 +583,7 @@ class App extends Component {
           <th>ProvisioningCode</th>
           <th>{this.state.leafItems[0].ProvisioningCode}</th>
         </tr>
-        <tr colspan="2">
+        <tr>
           <th>ProvisioningCodeDescription</th>
           <th>{this.state.leafItems[0].ProvisioningCodeDescription}</th>
         </tr>
@@ -606,8 +607,10 @@ class App extends Component {
     );
     let leafCustomfieldsTable = (
       <table id="leafCustomfieldsTable">
-        <tr rowspan="5">
-          <th>Custom Fields</th>
+        <tr>
+          <th colspan="5" style={{ textAlign: "center" }}>
+            Custom Fields
+          </th>
         </tr>
         <tr>
           <th>Identifier</th>
@@ -619,37 +622,45 @@ class App extends Component {
         <tr></tr>
       </table>
     );
-    return (
-      <div class="pallete">
-        <div class="row-container">
-          <div class="col-container">
-            {logoDiv}
-            {telephonesListDiv}
-          </div>
 
-          <div class="col-container">
-            <div class="container-2">
+    return (
+      <div>
+        <Header />
+        <MenuBar />
+        <div class="pallete">
+          <div class="row-container">
+            <div class="container-1">
               <div class="col-container">
-                {screenNameDiv}
-                <div class="row-container">
-                  <div>{serviceIdentifierTable}</div>
-                  <div>{accountIdTable}</div>
-                </div>
-                <div>{customfieldsTable}</div>
+                {logoDiv}
+                {telephonesListDiv}
               </div>
             </div>
 
-            <div class="container-3">
-              <div class="col-container">
-                <div class="row-container">
-                  <div>{leafServiceIdentifierTable}</div>
-                  <div>{leafAccountIdTable}</div>
+            <div class="col-container">
+              {screenNameDiv}
+              <div class="container-2">
+                <div class="col-container">
+                  <div class="row-container">
+                    <div class="box-4">{serviceIdentifierTable}</div>
+                    <div class="box-5">{accountIdTable}</div>
+                  </div>
+                  <div class="box-6">{customfieldsTable}</div>
                 </div>
-                <div>{leafCustomfieldsTable}</div>
+              </div>
+
+              <div class="container-3">
+                <div class="col-container">
+                  <div class="row-container">
+                    <div class="box-4">{leafServiceIdentifierTable}</div>
+                    <div class="box-5">{leafAccountIdTable}</div>
+                  </div>
+                  <div class="box-6">{leafCustomfieldsTable}</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
