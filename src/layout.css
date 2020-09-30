@@ -3,69 +3,106 @@
   background-color: white;
   display: flex;
   flex: 1;
+  justify-content: space-around;
 }
 .container-1 {
+  display: flex;
   padding: 10px;
+  margin-left: 15px;
 }
 .container-2 {
   display: flex;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   justify-content: space-around;
+  margin: 10px;
+  background-color: white;
+}
+.container-3 {
+  border: 2px solid #ccc;
+  box-sizing: border-box;
+  background-color: white;
   margin: 10px;
 }
 .col-container {
   display: flex;
+  margin: 15px;
   flex-direction: column;
 }
 .row-container {
   display: flex;
   flex-direction: row;
 }
+.box-1 {
+  padding: 10px;
+  width: 30px;
+  margin-bottom: 35px;
+}
+.box-2 {
+  background-color: white;
+}
 .box-3 {
   display: flex;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   padding: 10px;
   justify-content: center;
   margin: 5px;
   font-size: 30px;
   padding: 10px;
+  background-color: rgb(33, 94, 149);
+  color: white;
 }
-li {
+.flex-space-around {
+  display: flex;
+  justify-content: space-around;
+}
+.box-4 {
+  display: flex;
+  margin: 10px;
+}
+.box-5 {
+  display: flex;
+  margin: 10px;
+}
+.box-6 {
+  display: flex;
+  margin: 10px;
+}
+
+.flex-li {
   list-style-type: none;
   padding: 5px;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   margin: 5px;
   display: flex;
   justify-content: left;
   box-shadow: 0 2px 2px #ccc;
 }
-ul {
+.flex-ul {
   padding: 2px;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
-.box-1 {
-  display: flex;
-  padding: 10px;
-  width: 30px;
+.rightAlign {
+  text-align: right;
 }
-.box-2 {
-  display: flex;
+.leftAlign {
+  text-align: left;
 }
-.box-4 {
+table,
+th,
+tr,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
-.box-5 {
-  background-color: ;
-}
-.container-3 {
-}
-table {
+/*
+.flex-table {
   border: 1px solid #ccc;
   margin: 10px;
 }
-td th {
+.flex-td .flex-th {
   width: 4rem;
   height: 2rem;
   border: 10px solid #ccc;
@@ -73,18 +110,21 @@ td th {
   display: flex;
   flex-wrap: wrap;
 }
-tr {
+.flex-tr {
   background: lightblue;
   border-color: white;
   border: 5px solid #ccc;
 }
-.heading {
-  border-bottom: 1px solid #ccc;
+*/
+.flex-heading {
+  border-bottom: 1px solid rgb(33, 94, 149);
   padding: 5px;
   display: flex;
   text-align: center;
-  background-color: #ccc;
+  background-color: rgb(33, 94, 149);
+  color: white;
 }
+
 .shadow {
   box-shadow: 0 2px 2px #ccc;
 }

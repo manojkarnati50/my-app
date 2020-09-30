@@ -422,83 +422,93 @@ class App extends Component {
     let serviceIdentifierTable = (
       <table>
         <tr>
-          <th>ServiceIdentifier</th>
-          <th>{this.state.rootItem[0].ServiceIdentifier}</th>
+          <th class="rightAlign">ServiceIdentifier</th>
+          <th class="leftAlign">{this.state.rootItem[0].ServiceIdentifier}</th>
         </tr>
         <tr>
-          <th>ParentServiceIdentifier</th>
-          <th>{this.state.rootItem[0].ParentServiceIdentifier}</th>
+          <th class="rightAlign">ParentServiceIdentifier</th>
+          <th class="leftAlign">
+            {this.state.rootItem[0].ParentServiceIdentifier}
+          </th>
         </tr>
         <tr>
-          <th>EquipmentId</th>
-          <th>{this.state.rootItem[0].EquipmentId}</th>
+          <th class="rightAlign">EquipmentId</th>
+          <th class="leftAlign">{this.state.rootItem[0].EquipmentId}</th>
         </tr>
         <tr>
-          <th>TelephoneNumberId</th>
-          <th>{this.state.rootItem[0].TelephoneNumberId}</th>
+          <th class="rightAlign">TelephoneNumberId</th>
+          <th class="leftAlign">{this.state.rootItem[0].TelephoneNumberId}</th>
         </tr>
         <tr>
-          <th>WorkPlanItemIdentifier</th>
-          <th>{this.state.rootItem[0].WorkPlanItemIdentifier}</th>
+          <th class="rightAlign">WorkPlanItemIdentifier</th>
+          <th class="leftAlign">
+            {this.state.rootItem[0].WorkPlanItemIdentifier}
+          </th>
         </tr>
         <tr>
-          <th>TelephoneNumberICallingCardId UserDefinedIdentifier</th>
-          <th>some random value</th>
+          <th class="rightAlign">
+            TelephoneNumberICallingCardId UserDefinedIdentifier
+          </th>
+          <th class="leftAlign"></th>
         </tr>
         <tr>
-          <th>AccountStageCode </th>
-          <th>{this.state.rootItem[0].AccountStageCode}</th>
+          <th class="rightAlign">AccountStageCode </th>
+          <th class="leftAlign">{this.state.rootItem[0].AccountStageCode}</th>
         </tr>
         <tr>
-          <th>JobExists</th>
-          <th>{this.state.rootItem[0].Job}</th>
+          <th class="rightAlign"> JobExists</th>
+          <th class="leftAlign">{this.state.rootItem[0].Job}</th>
         </tr>
         <tr>
-          <th>Restore</th>
-          <th>{this.state.rootItem[0].Restore}</th>
+          <th class="rightAlign">Restore</th>
+          <th class="leftAlign">{this.state.rootItem[0].Restore}</th>
         </tr>
         <tr>
-          <th>Action</th>
-          <th>{this.state.rootItem[0].Action}</th>
+          <th class="rightAlign">Action</th>
+          <th class="leftAlign">{this.state.rootItem[0].Action}</th>
         </tr>
       </table>
     );
     let accountIdTable = (
       <table>
         <tr>
-          <th>AccountId</th>
-          <th>{this.state.rootItem[0].AccountId}</th>
+          <th class="rightAlign">AccountId</th>
+          <th class="leftAlign">{this.state.rootItem[0].AccountId}</th>
         </tr>
         <tr>
-          <th>Status</th>
-          <th>{this.state.rootItem[0].Status}</th>
+          <th class="rightAlign">Status</th>
+          <th class="leftAlign">{this.state.rootItem[0].Status}</th>
         </tr>
         <tr>
-          <th>HierarchyLevel</th>
-          <th>{this.state.rootItem[0].HierarchyLevel}</th>
+          <th class="rightAlign">HierarchyLevel</th>
+          <th class="leftAlign">{this.state.rootItem[0].HierarchyLevel}</th>
         </tr>
         <tr>
-          <th>ProvisioningCode</th>
-          <th>{this.state.rootItem[0].ProvisioningCode}</th>
+          <th> class="rightAlign"ProvisioningCode</th>
+          <th class="leftAlign">{this.state.rootItem[0].ProvisioningCode}</th>
         </tr>
         <tr colspan="2">
-          <th>ProvisioningCodeDescription</th>
-          <th>{this.state.rootItem[0].ProvisioningCodeDescription}</th>
+          <th class="rightAlign">ProvisioningCodeDescription</th>
+          <th class="leftAlign">
+            {this.state.rootItem[0].ProvisioningCodeDescription}
+          </th>
         </tr>
         <tr>
-          <th rowspan="4">LineOfBusines</th>
+          <th class="rightAlign" rowspan="4">
+            LineOfBusines
+          </th>
 
           <tr>
-            <th>Type</th>
-            <th>{this.state.rootItem[0].Type}</th>
+            <th class="rightAlign">Type</th>
+            <th class="leftAlign">{this.state.rootItem[0].Type}</th>
           </tr>
           <tr>
-            <th>SubType</th>
-            <th>{this.state.rootItem[0].SubType}</th>
+            <th class="rightAlign">SubType</th>
+            <th class="leftAlign">{this.state.rootItem[0].SubType}</th>
           </tr>
           <tr>
-            <th>StageCode</th>
-            <th>{this.state.rootItem[0].StageCode}</th>
+            <th class="rightAlign">StageCode</th>
+            <th class="leftAlign">{this.state.rootItem[0].StageCode}</th>
           </tr>
         </tr>
       </table>
@@ -524,83 +534,93 @@ class App extends Component {
     let leafServiceIdentifierTable = (
       <table>
         <tr>
-          <th>ServiceIdentifier</th>
-          <th>{this.state.leafItems[0].ServiceIdentifier}</th>
+          <th class="rightAlign">ServiceIdentifier</th>
+          <th class="leftAlign">{this.state.leafItems[0].ServiceIdentifier}</th>
         </tr>
         <tr>
-          <th>ParentServiceIdentifier</th>
-          <th>{this.state.leafItems[0].ParentServiceIdentifier}</th>
+          <th class="rightAlign">ParentServiceIdentifier</th>
+          <th class="leftAlign">
+            {this.state.leafItems[0].ParentServiceIdentifier}
+          </th>
         </tr>
         <tr>
-          <th>EquipmentId</th>
-          <th>{this.state.leafItems[0].EquipmentId}</th>
+          <th class="rightAlign">EquipmentId</th>
+          <th class="leftAlign">{this.state.leafItems[0].EquipmentId}</th>
         </tr>
         <tr>
-          <th>TelephoneNumberId</th>
-          <th>{this.state.leafItems[0].TelephoneNumberId}</th>
+          <th class="rightAlign">TelephoneNumberId</th>
+          <th class="leftAlign">{this.state.leafItems[0].TelephoneNumberId}</th>
         </tr>
         <tr>
-          <th>WorkPlanItemIdentifier</th>
-          <th>{this.state.leafItems[0].WorkPlanItemIdentifier}</th>
+          <th class="rightAlign">WorkPlanItemIdentifier</th>
+          <th class="leftAlign">
+            {this.state.leafItems[0].WorkPlanItemIdentifier}
+          </th>
         </tr>
         <tr>
-          <th>TelephoneNumberICallingCardId UserDefinedIdentifier</th>
-          <th>some random value</th>
+          <th class="rightAlign">
+            TelephoneNumberICallingCardId UserDefinedIdentifier
+          </th>
+          <th class="leftAlign">some random value</th>
         </tr>
         <tr>
-          <th>AccountStageCode </th>
-          <th>{this.state.leafItems[0].AccountStageCode}</th>
+          <th class="rightAlign">AccountStageCode </th>
+          <th class="leftAlign">{this.state.leafItems[0].AccountStageCode}</th>
         </tr>
         <tr>
-          <th>JobExists</th>
-          <th>{this.state.leafItems[0].Job}</th>
+          <th class="rightAlign">JobExists</th>
+          <th class="leftAlign">{this.state.leafItems[0].Job}</th>
         </tr>
         <tr>
-          <th>Restore</th>
-          <th>{this.state.leafItems[0].Restore}</th>
+          <th class="rightAlign">Restore</th>
+          <th class="leftAlign">{this.state.leafItems[0].Restore}</th>
         </tr>
         <tr>
-          <th>Action</th>
-          <th>{this.state.leafItems[0].Action}</th>
+          <th class="rightAlign">Action</th>
+          <th class="leftAlign">{this.state.leafItems[0].Action}</th>
         </tr>
       </table>
     );
     let leafAccountIdTable = (
       <table>
         <tr>
-          <th>AccountId</th>
-          <th>{this.state.leafItems[0].AccountId}</th>
+          <th class="rightAlign">AccountId</th>
+          <th class="leftAlign">{this.state.leafItems[0].AccountId}</th>
         </tr>
         <tr>
-          <th>Status</th>
-          <th>{this.state.leafItems[0].Status}</th>
+          <th class="rightAlign">Status</th>
+          <th class="leftAlign">{this.state.leafItems[0].Status}</th>
         </tr>
         <tr>
-          <th>HierarchyLevel</th>
-          <th>{this.state.leafItems[0].HierarchyLevel}</th>
+          <th class="rightAlign">HierarchyLevel</th>
+          <th class="leftAlign">{this.state.leafItems[0].HierarchyLevel}</th>
         </tr>
         <tr>
-          <th>ProvisioningCode</th>
-          <th>{this.state.leafItems[0].ProvisioningCode}</th>
+          <th class="rightAlign">ProvisioningCode</th>
+          <th class="leeftAlign">{this.state.leafItems[0].ProvisioningCode}</th>
         </tr>
         <tr>
-          <th>ProvisioningCodeDescription</th>
-          <th>{this.state.leafItems[0].ProvisioningCodeDescription}</th>
+          <th class="rightAlign">ProvisioningCodeDescription</th>
+          <th class="leftAlign">
+            {this.state.leafItems[0].ProvisioningCodeDescription}
+          </th>
         </tr>
         <tr>
-          <th rowspan="4">LineOfBusines</th>
+          <th class="rightAlign" rowspan="4">
+            LineOfBusines
+          </th>
 
           <tr>
-            <th>Type</th>
-            <th>{this.state.leafItems[0].Type}</th>
+            <th class="rightAlign">Type</th>
+            <th class="leftAlign">{this.state.leafItems[0].Type}</th>
           </tr>
           <tr>
-            <th>SubType</th>
-            <th>{this.state.leafItems[0].SubType}</th>
+            <th class="rightAlign">SubType</th>
+            <th class="leftAlign">{this.state.leafItems[0].SubType}</th>
           </tr>
           <tr>
-            <th>StageCode</th>
-            <th>{this.state.leafItems[0].StageCode}</th>
+            <th class="rightAlign">StageCode</th>
+            <th class="leftAlign">{this.state.leafItems[0].StageCode}</th>
           </tr>
         </tr>
       </table>
@@ -625,8 +645,6 @@ class App extends Component {
 
     return (
       <div>
-        <Header />
-        <MenuBar />
         <div class="pallete">
           <div class="row-container">
             <div class="container-1">
@@ -660,7 +678,6 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }
