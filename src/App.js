@@ -401,18 +401,19 @@ class App extends Component {
   };
 
   render() {
-    let logoDiv = (
-      <div class="box-1">
-        <img src={logo} alt="Logo" />
-      </div>
-    );
     let telephonesListDiv = (
       <div class="box-2">
         <ul class="flex-ul">
           <span class="flex-heading">TelephoneNumbers</span>
           {this.state.telephonesList.map((item) => (
             <li class="flex-li" key={item}>
-              <a onClick={() => this.setTelePhoneHandler(item)}>{item}</a>
+              <a
+                href="#"
+                style={{ textDecoration: "underline" }}
+                onClick={() => this.setTelePhoneHandler(item)}
+              >
+                {item}
+              </a>
             </li>
           ))}
         </ul>
@@ -447,7 +448,7 @@ class App extends Component {
         </tr>
         <tr>
           <th class="rightAlign">
-            TelephoneNumberICallingCardId UserDefinedIdentifier
+            TelephoneNumberIDCallingCardId UserDefinedIdentifier
           </th>
           <th class="leftAlign"></th>
         </tr>
@@ -470,7 +471,7 @@ class App extends Component {
       </table>
     );
     let accountIdTable = (
-      <table>
+      <table class="dataTable">
         <tr>
           <th class="rightAlign">AccountId</th>
           <th class="leftAlign">{this.state.rootItem[0].AccountId}</th>
@@ -484,7 +485,7 @@ class App extends Component {
           <th class="leftAlign">{this.state.rootItem[0].HierarchyLevel}</th>
         </tr>
         <tr>
-          <th> class="rightAlign"ProvisioningCode</th>
+          <th class="rightAlign"> ProvisioningCode</th>
           <th class="leftAlign">{this.state.rootItem[0].ProvisioningCode}</th>
         </tr>
         <tr colspan="2">
@@ -494,22 +495,20 @@ class App extends Component {
           </th>
         </tr>
         <tr>
-          <th class="rightAlign" rowspan="4">
-            LineOfBusines
+          <th>
+            <th>LineOfBusines</th>
+            <th>
+              <tr class="rightAlign">Type</tr>
+              <tr class="rightAlign">SubType</tr>
+              <tr class="rightAlign">StageCode</tr>
+            </th>
           </th>
 
-          <tr>
-            <th class="rightAlign">Type</th>
-            <th class="leftAlign">{this.state.rootItem[0].Type}</th>
-          </tr>
-          <tr>
-            <th class="rightAlign">SubType</th>
-            <th class="leftAlign">{this.state.rootItem[0].SubType}</th>
-          </tr>
-          <tr>
-            <th class="rightAlign">StageCode</th>
-            <th class="leftAlign">{this.state.rootItem[0].StageCode}</th>
-          </tr>
+          <th>
+            <tr class="leftAlign ">{this.state.rootItem[0].Type}</tr>
+            <tr class="leftAlign ">{this.state.rootItem[0].SubType}</tr>
+            <tr class="leftAlign ">{this.state.rootItem[0].StageCode}</tr>
+          </th>
         </tr>
       </table>
     );
@@ -559,9 +558,9 @@ class App extends Component {
         </tr>
         <tr>
           <th class="rightAlign">
-            TelephoneNumberICallingCardId UserDefinedIdentifier
+            TelephoneNumberIDCallingCardId UserDefinedIdentifier
           </th>
-          <th class="leftAlign">some random value</th>
+          <th class="leftAlign"></th>
         </tr>
         <tr>
           <th class="rightAlign">AccountStageCode </th>
@@ -606,22 +605,20 @@ class App extends Component {
           </th>
         </tr>
         <tr>
-          <th class="rightAlign" rowspan="4">
-            LineOfBusines
+          <th>
+            <th>LineOfBusines</th>
+            <th>
+              <tr class="rightAlign">Type</tr>
+              <tr class="rightAlign">SubType</tr>
+              <tr class="rightAlign">StageCode</tr>
+            </th>
           </th>
 
-          <tr>
-            <th class="rightAlign">Type</th>
-            <th class="leftAlign">{this.state.leafItems[0].Type}</th>
-          </tr>
-          <tr>
-            <th class="rightAlign">SubType</th>
-            <th class="leftAlign">{this.state.leafItems[0].SubType}</th>
-          </tr>
-          <tr>
-            <th class="rightAlign">StageCode</th>
-            <th class="leftAlign">{this.state.leafItems[0].StageCode}</th>
-          </tr>
+          <th>
+            <tr class="leftAlign ">{this.state.leafItems[0].Type}</tr>
+            <tr class="leftAlign ">{this.state.leafItems[0].SubType}</tr>
+            <tr class="leftAlign ">{this.state.leafItems[0].StageCode}</tr>
+          </th>
         </tr>
       </table>
     );
@@ -648,10 +645,7 @@ class App extends Component {
         <div class="pallete">
           <div class="row-container">
             <div class="container-1">
-              <div class="col-container">
-                {logoDiv}
-                {telephonesListDiv}
-              </div>
+              <div class="col-container">{telephonesListDiv}</div>
             </div>
 
             <div class="col-container">

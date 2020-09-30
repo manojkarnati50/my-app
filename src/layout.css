@@ -38,18 +38,20 @@
   margin-bottom: 35px;
 }
 .box-2 {
+  margin-top: 75px;
   background-color: white;
 }
 .box-3 {
   display: flex;
-  border: 2px solid #ccc;
+  border-bottom: 1px solid #ccc;
   padding: 10px;
   justify-content: center;
   margin: 5px;
-  font-size: 30px;
   padding: 10px;
-  background-color: rgb(33, 94, 149);
-  color: white;
+  font-weight: bold;
+  line-height: 2em;
+  font-size: 1.06em;
+  color: #06c;
 }
 .flex-space-around {
   display: flex;
@@ -97,34 +99,30 @@ td {
   border: 1px solid black;
   border-collapse: collapse;
 }
-/*
-.flex-table {
-  border: 1px solid #ccc;
-  margin: 10px;
+.noborder {
+  border: none;
 }
-.flex-td .flex-th {
-  width: 4rem;
-  height: 2rem;
-  border: 10px solid #ccc;
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
+.bordertop {
+  border-top: 1px solid black;
 }
-.flex-tr {
-  background: lightblue;
-  border-color: white;
-  border: 5px solid #ccc;
+.borderbottom {
+  border-bottom: 1px solid black;
 }
-*/
+.borderright {
+  border-right: 1px solid black;
+}
+.bordeleft {
+  border-left: 1px solid black;
+}
+
 .flex-heading {
   border-bottom: 1px solid rgb(33, 94, 149);
   padding: 5px;
   display: flex;
   text-align: center;
-  background-color: rgb(33, 94, 149);
+  background-color: #06c;
   color: white;
 }
-
 .shadow {
   box-shadow: 0 2px 2px #ccc;
 }
